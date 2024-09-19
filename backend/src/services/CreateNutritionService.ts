@@ -2,7 +2,7 @@ import { DataProps } from '../interfaces/DataProps'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
 class CreateNutritionService {
-    async execute({name, weight, height, age, gender, objective, level}: DataProps){
+    async execute({name, weight, height, age, gender, objective, level, comorbidity}: DataProps){
         try{
             const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
             const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
@@ -10,7 +10,7 @@ class CreateNutritionService {
             const response = await model.generateContent(`Crie uma dieta completa 
             para uma pessoa com nome: ${name} do sexo ${gender} com peso atual: ${weight}kg,
             altura: ${height}, idade: ${age} anos e com foco e objetivo em ${objective}, 
-            atualmente nível de atividade: ${level} e ignore qualquer outro parametro que não seja os passados,
+            atualmente nível de atividade: ${level}, comorbidade: ${comorbidity} e ignore qualquer outro parametro que não seja os passados,
             retorne em json com as respectivas propriedades, propriedade nome o nome da pessoa,
             propriedade sexo com sexo, propriedade idade, propriedade altura, propriedade peso,
             propriedade objetivo com o objetivo atual, propriedade refeições com uma array
