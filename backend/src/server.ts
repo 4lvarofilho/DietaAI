@@ -8,7 +8,6 @@ configDotenv()
 
 app.setErrorHandler((err, req, rep) =>{
     rep.code(400).send({message: err.message});
-
 });
 
 const start = async () => {
@@ -16,7 +15,7 @@ const start = async () => {
     app.register(routes)
 
     try {
-        await app.listen({port: 3000, host: '127.0.0.1'});
+        await app.listen({port: 3000, host: '0.0.0.0'});
         console.log('Server running on port 3000.')
     } catch (err) {
         console.error(err);

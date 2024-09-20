@@ -6,5 +6,4 @@ export interface DataProps {
     gender: string;
     objective: string;
     level: string;
-    comorbidity?: string;
 }
